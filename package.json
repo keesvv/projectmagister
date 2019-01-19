@@ -6,14 +6,15 @@
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron .",
-    "watch": "sass --watch scss:dist/css --style=compressed",
-    "package": "electron-packager . --platform=win32,darwin,linux"
+    "start": "npx electron .",
+    "watch": "npx sass --watch scss:dist/css --style=compressed",
+    "package": "npx electron-packager . --platform=win32,darwin,linux"
   },
   "author": "Kees van Voorthuizen",
   "license": "MPL-2.0",
   "devDependencies": {
     "electron": "^3.0.13",
+    "electron-packager": "^13.0.1",
     "sass": "^1.16.1"
   },
   "dependencies": {
