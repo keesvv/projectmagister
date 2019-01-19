@@ -237,6 +237,16 @@ var app = new Vue({
         toggleSettings() {
             app.isSettingsMenu = !app.isSettingsMenu;
         },
+        toggleActionBar(event) {
+            const element = event.target;
+            if ($(element).parents("div").hasClass("btnPanel") ||
+                $(element).hasClass("btnPanel")) {
+                return;
+            }
+            
+            const btnPanel = $(element).parents("div").find(".btnPanel")[0];
+            $(btnPanel).toggleClass("shown");
+        },
         toggleHomeworkState(appointment) {
             appointment.isDone = !appointment.isDone;
             appointment.saveChanges();
