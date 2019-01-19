@@ -43,18 +43,18 @@ function createWindow() {
 
 ipcMain.on("validate-creds", (event, creds) => {
     getSchools(creds.school)
-	    .then((schools) => schools[0])
-	    .then((school) => magister({
-		    school,
-		    username: creds.username,
-		    password: creds.password,
-        }))
-        .then((m) => {
-            global.m = m;
-            mainWin.webContents.send("login-success", true);
-        }, (err) => {
-            mainWin.webContents.send("login-success", false);
-        });
+    .then((schools) => schools[0])
+    .then((school) => magister({
+      school,
+      username: creds.username,
+      password: creds.password,
+  }))
+    .then((m) => {
+        global.m = m;
+        mainWin.webContents.send("login-success", true);
+    }, (err) => {
+        mainWin.webContents.send("login-success", false);
+    });
 });
 
 app.once("ready", function () {

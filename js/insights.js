@@ -31,7 +31,7 @@ function computeInsights() {
 
     insights.push({
         name: "Je hoogste cijfer was een " +
-            app.magister.gradeToString(validGrades.max())  + ".",
+        app.magister.gradeToString(validGrades.max())  + ".",
 
         icon: "fas fa-star",
         colors: {
@@ -42,7 +42,7 @@ function computeInsights() {
 
     insights.push({
         name: "Je laagste cijfer was een " +
-            app.magister.gradeToString(validGrades.min()) + ".",
+        app.magister.gradeToString(validGrades.min()) + ".",
 
         icon: "fas fa-angle-double-down",
         colors: {
@@ -53,7 +53,7 @@ function computeInsights() {
 
     insights.push({
         name: "Je hebt dit jaar " +
-            failedGrades.length + ` onvoldoende${failedGrades.length > 1 ? "s" : ""} gehaald.`,
+        failedGrades.length + ` onvoldoende${failedGrades.length > 1 ? "s" : ""} gehaald.`,
 
         icon: null,
         colors: {}

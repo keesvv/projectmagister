@@ -34,9 +34,9 @@ app.agendaDate = dayFormat;
 
 function resetLoadState() {
     const keys = [
-        "appointments", "messages", "grades",
-        "assignments", "tests", "insights",
-        "files"
+    "appointments", "messages", "grades",
+    "assignments", "tests", "insights",
+    "files"
     ];
 
     keys.forEach(key => {
@@ -52,19 +52,19 @@ function resetLoadState() {
 
 function refreshHomework() {
     m.appointments(agendaDate, inTwoWeeks)
-        .then((appointments) => {
-            let tests = [];
-            for (let i = 0; i < appointments.length; i++) {
-                const element = appointments[i];
-                
-                if ([2, 4, 5].includes(element.infoType)) {
-                    tests.push(element);
-                }
+    .then((appointments) => {
+        let tests = [];
+        for (let i = 0; i < appointments.length; i++) {
+            const element = appointments[i];
+            
+            if ([2, 4, 5].includes(element.infoType)) {
+                tests.push(element);
             }
+        }
 
-            app.magister.tests = tests;
-            app.isLoaded.tests = true;
-        });
+        app.magister.tests = tests;
+        app.isLoaded.tests = true;
+    });
 }
 
 function refreshData() {
@@ -75,56 +75,56 @@ function refreshData() {
     }
 
     m.appointments(agendaDate, agendaDate)
-        .then((appointments) => {
-            app.magister.appointments = appointments;
-            app.isLoaded.appointments = true;
-        });
+    .then((appointments) => {
+        app.magister.appointments = appointments;
+        app.isLoaded.appointments = true;
+    });
 
     refreshHomework();
 
     m.courses().then((courses) => {
         _.last(courses).grades()
-            .then((grades) => {
-                grades.sort(function (a, b) {
-                    var dateA = new Date(a.dateFilledIn);
-                    var dateB = new Date(b.dateFilledIn);
-                    return dateB - dateA;
-                });
-                
-                var validGrades = [];
-                grades.forEach(i => {
-                    if (i.counts && i.weight > 0)
-                        validGrades.push(i);
-                });
-        
-                app.magister.grades = grades;
-                app.magister.insights = computeInsights();
-                app.isLoaded.grades = true;
+        .then((grades) => {
+            grades.sort(function (a, b) {
+                var dateA = new Date(a.dateFilledIn);
+                var dateB = new Date(b.dateFilledIn);
+                return dateB - dateA;
+            });
+            
+            var validGrades = [];
+            grades.forEach(i => {
+                if (i.counts && i.weight > 0)
+                    validGrades.push(i);
+            });
+            
+            app.magister.grades = grades;
+            app.magister.insights = computeInsights();
+            app.isLoaded.grades = true;
 
-                refreshGraph(validGrades);
+            refreshGraph(validGrades);
         });
     });
     
     m.messageFolders()
-        .then((folders) => {
-            folders[0].messages().then((messages) => {
-                app.magister.messages = messages.messages;
-                app.isLoaded.messages = true;
-            });
+    .then((folders) => {
+        folders[0].messages().then((messages) => {
+            app.magister.messages = messages.messages;
+            app.isLoaded.messages = true;
         });
+    });
     
     m.assignments()
-        .then((assignments) => {
-            assignments.reverse();
-            app.magister.assignments = assignments;
-            app.isLoaded.assignments = true;
-        });
+    .then((assignments) => {
+        assignments.reverse();
+        app.magister.assignments = assignments;
+        app.isLoaded.assignments = true;
+    });
 
     m.fileFolders()
-        .then((folders) => {
-            app.magister.files = folders;
-            app.isLoaded.files = true;
-        });
+    .then((folders) => {
+        app.magister.files = folders;
+        app.isLoaded.files = true;
+    });
 }
 
 function initData() {
@@ -139,11 +139,11 @@ function initData() {
     m.courses().then((courses) => {
         var currentCourse = _.last(courses);
         const userDesc = [
-            m.school.name,
-            currentCourse.type.description,
-            currentCourse.group.description
+        m.school.name,
+        currentCourse.type.description,
+        currentCourse.group.description
         ];
-    
+        
         app.profile.userDesc = userDesc.join(" - ");
     });
 
