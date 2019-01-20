@@ -14,6 +14,9 @@
   <a href="https://www.codefactor.io/repository/github/deltaproject/delta">
     <img src="https://www.codefactor.io/repository/github/deltaproject/delta/badge" alt="CodeFactor"></img>
   </a>
+  <a href="https://standardjs.com">
+    <img src="https://img.shields.io/badge/code_style-standard-brightgreen.svg", alt="JavaScript Style Guide">
+  </a>
   <br><br>
 </div>
 

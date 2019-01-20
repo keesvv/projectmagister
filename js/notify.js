@@ -1,20 +1,20 @@
-function sendNotify(caption, notificationType) {
-    if (notificationType == undefined
-        || notificationType == null) {
-        notificationType = "";
-}
+function sendNotify (caption, notificationType) { // eslint-disable-line no-unused-vars
+  if (notificationType === undefined ||
+        notificationType == null) {
+    notificationType = ''
+  }
 
-var container = document.getElementById("notifyContainer");
-var notify = document.createElement("div");
-notify.className = `notification ${notificationType}`;
-notify.innerText = caption;
+  var container = document.getElementById('notifyContainer')
+  var notify = document.createElement('div')
+  notify.className = `notification ${notificationType}`
+  notify.innerText = caption
 
-container.appendChild(notify);
+  container.appendChild(notify)
 
-setTimeout(() => {
-    notify.className += " dismissed";
+  setTimeout(() => {
+    notify.className += ' dismissed'
     setTimeout(() => {
-        container.removeChild(notify);
-    }, 500);
-}, 3000);
+      container.removeChild(notify)
+    }, 500)
+  }, 3000)
 }
