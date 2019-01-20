@@ -302,12 +302,25 @@ var app = new Vue({
       var credsFile = path.join(electron.getPath('userData'), 'delta.json')
       try {
         fs.unlinkSync(credsFile)
-        electron.relaunch()
-        electron.quit()
-      } catch (error) {
-        dialogError('Er ging iets fout tijdens het afmelden. ' +
-            'Probeer Delta opnieuw op te starten en vervolgens opnieuw af te melden.')
+      } catch (err) {
+        if (err.code !== 'ENOENT') {
+          dialogError(err.message)
+          electron.quit()
+        }
       }
+
+      if (!app.auth.saveCreds) {
+        app.auth.schoolQuery = []
+        app.auth.creds = {
+          school: '',
+          username: '',
+          password: ''
+
+        }
+      }
+
+      app.isSettingsMenu = false
+      app.auth.loginSuccess = false
     },
     browse (magisterFolder) {
       sendNotify('Het is momenteel nog niet mogelijk om te browsen door Bestanden.', 'error')
