@@ -1,30 +1,27 @@
-var $ = require("jquery/dist/jquery");
+var $ = require('jquery/dist/jquery')
 
-function minimizeWindow() {
-    remote.BrowserWindow.getFocusedWindow().minimize();
+function minimizeWindow () {
+  remote.BrowserWindow.getFocusedWindow().minimize()
 }
 
-function maximizeWindow() {
-    var win = remote.BrowserWindow.getFocusedWindow();
-    if (win.isMaximized())
-        win.restore();
-    else
-        win.maximize();
+function maximizeWindow () {
+  var win = remote.BrowserWindow.getFocusedWindow()
+  if (win.isMaximized()) { win.restore() } else { win.maximize() }
 }
 
-function closeWindow(quitOnClose = true) {
-    if (quitOnClose) {
-        electron.quit();
-    } else {
-        remote.BrowserWindow.getFocusedWindow().close();
-    }
+function closeWindow (quitOnClose = true) {
+  if (quitOnClose) {
+    electron.quit()
+  } else {
+    remote.BrowserWindow.getFocusedWindow().close()
+  }
 }
 
 Vue.component('title-bar', {
-    template: `
+  template: `
     <div class="titleBar no-select">
         <div class="titleContainer">
-            <p>${$("title").html()}</p>
+            <p>${$('title').html()}</p>
         </div>
 
         <div class="btnContainer">
@@ -42,4 +39,4 @@ Vue.component('title-bar', {
         </div>
     </div>
     `
-});
+})
