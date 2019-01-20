@@ -45,7 +45,7 @@ function refreshGraph (grades) { // eslint-disable-line no-unused-vars
   })
 
   var context = document.getElementById('perfChart').getContext('2d')
-  chart.Chart(context, {
+  new chart.Chart(context, {
     type: 'line',
     data: chartData,
     options: {
