@@ -1,4 +1,5 @@
-function dialogInfo (message) {
+/* globals dialog */
+function dialogInfo (message) { // eslint-disable-line no-unused-vars
   dialog.showMessageBox({
     title: 'Informatie',
     type: 'info',
@@ -7,7 +8,7 @@ function dialogInfo (message) {
   })
 }
 
-function dialogQuestion (message, title, buttons, cancelId, callback) {
+function dialogQuestion (message, title, buttons, cancelId, callback) { // eslint-disable-line no-unused-vars
   dialog.showMessageBox({
     title: title,
     type: 'question',
@@ -19,7 +20,7 @@ function dialogQuestion (message, title, buttons, cancelId, callback) {
   })
 }
 
-function dialogError (message) {
+function dialogError (message) { // eslint-disable-line no-unused-vars
   dialog.showMessageBox({
     title: 'Fout',
     type: 'error',

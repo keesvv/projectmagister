@@ -1,3 +1,4 @@
+/* globals Vue, electron, path, fs, moment, sendNotify, ipcRenderer, credsFile, initData, $, refreshHomework, showInfoDialog, dialogError, getSchools, dialogQuestion, os, download, shell, spawn */
 var app = new Vue({
   el: '#app',
   data: {
@@ -46,12 +47,12 @@ var app = new Vue({
       filterMessages (readState, maxMessages = 8) {
         let array = []
         for (let i = 0; i < this.messages.length; i++) {
-          if (i == maxMessages) {
+          if (i === maxMessages) {
             break
           }
 
           const element = this.messages[i]
-          if (element.isRead == readState) { array.push(element) }
+          if (element.isRead === readState) { array.push(element) }
         }
 
         return array
@@ -61,9 +62,9 @@ var app = new Vue({
 
         for (let i = 0; i < this.appointments.length; i++) {
           const element = this.appointments[i]
-          if (element.isDone == doneState &&
-                        element.content != undefined &&
-                        element.infoType == 1) { array.push(element) }
+          if (element.isDone === doneState &&
+                        element.content !== undefined &&
+                        element.infoType === 1) { array.push(element) }
         }
 
         return array
@@ -80,7 +81,7 @@ var app = new Vue({
       getLastGrades (maxItems = 5) {
         let lastGrades = []
         for (let i = 0; i < this.grades.length; i++) {
-          if (lastGrades.length == maxItems) { break }
+          if (lastGrades.length === maxItems) { break }
 
           const element = this.grades[i]
           if (element.type.header == null &&
@@ -124,7 +125,7 @@ var app = new Vue({
       return moment(date).format('H:mm')
     },
     formatDateHuman (date) {
-      if (date != undefined && date != null) {
+      if (date !== undefined && date != null) {
         return moment(date).format('LL')
       } else {
         return null
@@ -157,13 +158,13 @@ var app = new Vue({
       var extIndex = fileName.lastIndexOf('.')
       var ext = fileName.substring(extIndex + 1)
 
-      if (ext == 'doc' || ext == 'docx') {
+      if (ext === 'doc' || ext === 'docx') {
         return 'fa-file-word'
-      } else if (ext == 'ppt' || ext == 'pptx' || ext == 'ppsx') {
+      } else if (ext === 'ppt' || ext === 'pptx' || ext === 'ppsx') {
         return 'fa-file-powerpoint'
-      } else if (ext == 'xls' || ext == 'xlsx') {
+      } else if (ext === 'xls' || ext === 'xlsx') {
         return 'fa-file-excel'
-      } else if (ext == 'pdf') {
+      } else if (ext === 'pdf') {
         return 'fa-file-pdf'
       } else {
         return 'fa-file'
@@ -190,7 +191,7 @@ var app = new Vue({
       app.auth.loginSuccess = false
 
       app.getSchools(() => {
-        if (app.auth.schoolQuery.length == 0) {
+        if (app.auth.schoolQuery.length === 0) {
           app.auth.schoolIncorrect = true
           app.auth.isBusy = false
           sendNotify('De schoolnaam die je hebt ingevoerd bestaat niet. Check of je de volledige naam hebt gebruikt van de school.', 'error')
@@ -249,7 +250,7 @@ var app = new Vue({
       var tableData = [
         { 'name': 'Datum', 'value': this.formatDateHuman(appointment.start) },
         { 'name': 'Locatie', 'value': appointment.location },
-        { 'name': 'Docent' + (appointment.teachers.length == 1 ? '' : 'en'),
+        { 'name': 'Docent' + (appointment.teachers.length === 1 ? '' : 'en'),
           'value': `${appointment.teachers[0].fullName} (${appointment.teachers[0].teacherCode})` }
       ]
 
@@ -283,14 +284,14 @@ var app = new Vue({
       var tableData = [
         { 'name': 'Datum', 'value': this.formatDateHuman(test.start) },
         { 'name': 'Locatie', 'value': test.location },
-        { 'name': 'Docent' + (test.teachers.length == 1 ? '' : 'en'),
+        { 'name': 'Docent' + (test.teachers.length === 1 ? '' : 'en'),
           'value': `${test.teachers[0].fullName} (${test.teachers[0].teacherCode})` }
       ]
 
       let testType
-      if (test.infoType == 2) testType = 'Proefwerk'
-      else if (test.infoType == 4) testType = 'Schriftelijke overhoring'
-      else if (test.infoType == 5) testType = 'Mondelinge overhoring'
+      if (test.infoType === 2) testType = 'Proefwerk'
+      else if (test.infoType === 4) testType = 'Schriftelijke overhoring'
+      else if (test.infoType === 5) testType = 'Mondelinge overhoring'
       else testType = 'Overig'
 
       tableData.push({ 'name': 'Type', 'value': testType })
@@ -327,7 +328,7 @@ var app = new Vue({
         'Update',
         ['Installeer nu', 'Later'], 1,
         function (response) {
-          var install = response == 0
+          var install = response === 0
           if (install) {
             app.installUpdates(updateData)
           }
@@ -355,7 +356,7 @@ var app = new Vue({
 
       for (let i = 0; i < releaseData.assets.length; i++) {
         const element = releaseData.assets[i]
-        if (element.name.indexOf(targetPlatform) != -1) {
+        if (element.name.indexOf(targetPlatform) !== -1) {
           targetUrl = element.browser_download_url
           targetFilename = element.name
         }
@@ -381,7 +382,7 @@ var app = new Vue({
       })
     },
     installUpdates (updateData) {
-      if (updateData.targetPlatform == 'windows') {
+      if (updateData.targetPlatform === 'windows') {
         var installerProcess = spawn(updateData.targetPath, ['/silent'], {
           detached: true
         })
@@ -399,7 +400,7 @@ var app = new Vue({
         $.getJSON(`https://raw.githubusercontent.com/deltaproject/Delta/${data[0].tag_name}/package.json`, function (packageData) {
           var currentVersion = electron.getVersion()
           var latestVersion = packageData.version
-          if (currentVersion != latestVersion) {
+          if (currentVersion !== latestVersion) {
             app.downloadUpdates(data[0])
           }
         })

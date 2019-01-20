@@ -1,6 +1,7 @@
-function showInfoDialog (header, tableData,
+/* globals remote, path, url */
+function showInfoDialog (header, tableData, // eslint-disable-line no-unused-vars
   content = null, type = 'appointmentInfo', icon = 'far fa-calendar-check') {
-  infoWin = new remote.BrowserWindow({
+  var infoWin = new remote.BrowserWindow({
     width: 400,
     height: 650,
     show: false,

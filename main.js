@@ -1,6 +1,6 @@
-const _ = require('lodash')
+const _ = require('lodash') // eslint-disable-line no-unused-vars
 const { default: magister, getSchools } = require('magister.js')
-const electron = require('electron')
+const electron = require('electron') // eslint-disable-line no-unused-vars
 const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
 const url = require('url')
@@ -49,11 +49,13 @@ ipcMain.on('validate-creds', (event, creds) => {
       username: creds.username,
       password: creds.password
     }))
-    .then((m) => {
-      global.m = m
-      mainWin.webContents.send('login-success', true)
-    }, (err) => {
-      mainWin.webContents.send('login-success', false)
+    .then((m, err) => {
+      if (err) {
+        mainWin.webContents.send('login-success', false)
+      } else {
+        global.m = m
+        mainWin.webContents.send('login-success', true)
+      }
     })
 })
 

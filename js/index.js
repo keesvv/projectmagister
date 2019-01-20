@@ -1,18 +1,19 @@
-const { default: magister, getSchools } = require('magister.js')
-const { remote, ipcRenderer } = require('electron')
-const { spawn } = require('child_process')
+/* globals app, computeInsights, refreshGraph */
+const { default: magister, getSchools } = require('magister.js') // eslint-disable-line no-unused-vars
+const { remote, ipcRenderer } = require('electron') // eslint-disable-line no-unused-vars
+const { spawn } = require('child_process') // eslint-disable-line no-unused-vars
 const path = require('path')
-const url = require('url')
-const os = require('os')
+const url = require('url') // eslint-disable-line no-unused-vars
+const os = require('os') // eslint-disable-line no-unused-vars
 const moment = require('moment')
 const _ = require('lodash')
 const fs = require('fs')
 const electron = remote.app
-const shell = remote.shell
-const dialog = remote.dialog
-const download = require('download')
-const Vue = require('vue/dist/vue')
-var $ = require('jquery/dist/jquery')
+const shell = remote.shell // eslint-disable-line no-unused-vars
+const dialog = remote.dialog // eslint-disable-line no-unused-vars
+const download = require('download') // eslint-disable-line no-unused-vars
+const Vue = require('vue/dist/vue') // eslint-disable-line no-unused-vars
+var $ = require('jquery/dist/jquery') // eslint-disable-line no-unused-vars
 moment.locale('nl')
 
 const credsFile = path.join(electron.getPath('userData'), 'delta.json')
@@ -126,7 +127,7 @@ function refreshData () {
     })
 }
 
-function initData () {
+function initData () { // eslint-disable-line no-unused-vars
   m = remote.getGlobal('m')
 
   if (m != null) {
@@ -169,7 +170,7 @@ if (remote.process.argv.includes('--guest')) {
 }
 
 document.getElementById('authContainer').addEventListener('keyup', (event) => {
-  if (event.keyCode == 13 && app.isAuthFormFilled && !app.auth.isBusy) {
+  if (event.keyCode === 13 && app.isAuthFormFilled && !app.auth.isBusy) {
     app.login()
   }
 })

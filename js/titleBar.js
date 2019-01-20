@@ -1,15 +1,16 @@
+/* globals remote, electron, Vue */
 var $ = require('jquery/dist/jquery')
 
-function minimizeWindow () {
+function minimizeWindow () { // eslint-disable-line no-unused-vars
   remote.BrowserWindow.getFocusedWindow().minimize()
 }
 
-function maximizeWindow () {
+function maximizeWindow () { // eslint-disable-line no-unused-vars
   var win = remote.BrowserWindow.getFocusedWindow()
   if (win.isMaximized()) { win.restore() } else { win.maximize() }
 }
 
-function closeWindow (quitOnClose = true) {
+function closeWindow (quitOnClose = true) { // eslint-disable-line no-unused-vars
   if (quitOnClose) {
     electron.quit()
   } else {

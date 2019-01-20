@@ -8,7 +8,7 @@ const months = [
   'november', 'december'
 ]
 
-function refreshGraph (grades) {
+function refreshGraph (grades) { // eslint-disable-line no-unused-vars
   var chartData = {
     labels: [],
     datasets: [{
@@ -31,7 +31,7 @@ function refreshGraph (grades) {
       var averageThisMonth = 0.0
 
       grades.forEach(i => {
-        if (new Date(i.dateFilledIn).getMonth() == date) {
+        if (new Date(i.dateFilledIn).getMonth() === date) {
           totalThisMonth += i.weight * parseFloat(i.grade.replace(',', '.'))
           weightThisMonth += i.weight
         }
@@ -45,7 +45,7 @@ function refreshGraph (grades) {
   })
 
   var context = document.getElementById('perfChart').getContext('2d')
-  new Chart(context, {
+  chart.Chart(context, {
     type: 'line',
     data: chartData,
     options: {

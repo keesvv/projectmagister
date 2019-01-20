@@ -1,5 +1,5 @@
-function sendNotify (caption, notificationType) {
-  if (notificationType == undefined ||
+function sendNotify (caption, notificationType) { // eslint-disable-line no-unused-vars
+  if (notificationType === undefined ||
         notificationType == null) {
     notificationType = ''
   }

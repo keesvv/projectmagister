@@ -1,4 +1,5 @@
-function computeInsights () {
+/* globals app */
+function computeInsights () { // eslint-disable-line no-unused-vars
   let insights = []
 
   Array.prototype.min = function () {
@@ -19,7 +20,7 @@ function computeInsights () {
   for (let i = 0; i < allGrades.length; i++) {
     const element = allGrades[i]
     var parsedGrade = app.magister.parseGrade(element)
-    if (parsedGrade != undefined) {
+    if (parsedGrade !== undefined) {
       if (parsedGrade < 5.5) {
         failedGrades.push(parsedGrade)
       }
