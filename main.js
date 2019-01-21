@@ -5,6 +5,7 @@ const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
 const url = require('url')
 const isDev = require('electron-is-dev')
+const request = require('request')
 
 if (isDev) {
   require('electron-reload')(__dirname, {
@@ -42,21 +43,44 @@ function createWindow () {
 }
 
 ipcMain.on('validate-creds', (event, creds) => {
-  getSchools(creds.school)
-    .then((schools) => schools[0])
-    .then((school) => magister({
-      school,
-      username: creds.username,
-      password: creds.password
-    }))
-    .then((m, err) => {
-      if (err) {
-        mainWin.webContents.send('login-success', false)
-      } else {
-        global.m = m
-        mainWin.webContents.send('login-success', true)
+  // Retrieve authentication code
+  request('https://raw.githubusercontent.com/simplyGits/magisterjs-authcode/master/code.json', { json: true }, (err, res, code) => {
+    var authOptions
+
+    // Validate the response
+    if (err || res.statusCode !== 200) {
+      // If unsuccessful let magister.js use its
+      // default authenticationcode.
+      authOptions = {
+        username: creds.username,
+        password: creds.password
       }
-    })
+    } else {
+      // If successful use the authenticationcode we
+      // just retrieved.
+      authOptions = {
+        username: creds.username,
+        password: creds.password,
+        authCode: code
+      }
+    }
+
+    // Retrieve schools
+    getSchools(creds.school)
+      // Retrieve the right school.
+      .then((schools) => schools[0])
+      // Authenticate.
+      .then((school) => magister(_.merge({ school: school }, authOptions)))
+      // Check if authentication was successful.
+      .then((m, err) => {
+        if (err) {
+          mainWin.webContents.send('login-success', false)
+        } else {
+          global.m = m
+          mainWin.webContents.send('login-success', true)
+        }
+      })
+  })
 })
 
 app.once('ready', function () {
