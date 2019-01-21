@@ -80,6 +80,59 @@ ipcMain.on('validate-creds', (event, creds) => {
           mainWin.webContents.send('login-success', true)
         }
       })
+      .catch((err) => {
+        if (err.name === 'AuthError') {
+          mainWin.webContents.send('login-success', false)
+        } else if (!(err instanceof TypeError)) {
+          console.log(err)
+        }
+        // Just call ourselves again, most of the time that fixes the error
+        // should probably add a limit though.
+        mainWin.webContents.send('validate-creds', creds)
+      })
+  })
+})
+ipcMain.on('validate-token', (event, creds) => {
+  // Retrieve authentication code
+  request('https://raw.githubusercontent.com/simplyGits/magisterjs-authcode/master/code.json', { json: true }, (err, res, code) => {
+    var authOptions
+
+    // Validate the response
+    if (err || res.statusCode !== 200) {
+      // If unsuccessful let magister.js use its
+      // default authenticationcode.
+      authOptions = {
+        token: creds.token
+      }
+    } else {
+      // If successful use the authenticationcode we
+      // just retrieved.
+      authOptions = {
+        token: creds.token,
+        authCode: code
+      }
+    }
+
+    // Retrieve schools
+    getSchools(creds.school)
+      // Retrieve the right school.
+      .then((schools) => schools[0])
+      // Authenticate.
+      .then((school) => magister(_.merge({ school: school }, authOptions)))
+      // Check if authentication was successful.
+      .then((m, err) => {
+        if (err) {
+          mainWin.webContents.send('token-success', false)
+        } else {
+          global.m = m
+          mainWin.webContents.send('token-success', true)
+        }
+      }).catch((err) => {
+        if (!(err instanceof TypeError)) {
+          console.log(err)
+        }
+        mainWin.webContents.send('token-success', false)
+      })
   })
 })
 

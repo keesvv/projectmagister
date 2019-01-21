@@ -185,7 +185,7 @@ var app = new Vue({
     }
   },
   methods: {
-    login () {
+    login (useToken = false) {
       app.auth.isBusy = true
       app.auth.loginIncorrect = false
       app.auth.schoolIncorrect = false
@@ -199,7 +199,12 @@ var app = new Vue({
           return
         }
 
-        ipcRenderer.send('validate-creds', app.auth.creds)
+        if (useToken) {
+          ipcRenderer.send('validate-token', app.auth.creds)
+        } else {
+          ipcRenderer.send('validate-creds', app.auth.creds)
+        }
+
         ipcRenderer.once('login-success', (event, isSuccess) => {
           if (isSuccess) {
             app.auth.loginSuccess = true
@@ -224,6 +229,18 @@ var app = new Vue({
             sendNotify('Je gebruikersnaam en/of wachtwoord kloppen niet.', 'error')
           }
         })
+        ipcRenderer.once('token-success', (event, isSuccess) => {
+          if (isSuccess) {
+            app.auth.loginSuccess = true
+            app.auth.isBusy = false
+
+            initData()
+          } else {
+            app.auth.loginIncorrect = false
+            app.auth.isBusy = false
+            app.auth.token = ''
+          }
+        })
       })
     },
     signOff () {
@@ -244,7 +261,17 @@ var app = new Vue({
           password: '',
           token: ''
         }
+      } else {
+        let rawJson = `{"school": "${app.auth.creds.school}", "username": "${app.auth.creds.username}", "token": ""}`
+        fs.writeFile(credsFile, rawJson, 'utf8', (err) => {
+          if (err) {
+            console.log('Unable to save credentials to file: ' + err)
+          }
+        })
       }
+
+      // When logging off delete the token
+      app.auth.creds.token = ''
 
       app.isSettingsMenu = false
       app.auth.loginSuccess = false

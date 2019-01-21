@@ -165,7 +165,7 @@ if (remote.process.argv.includes('--guest')) {
   if (fs.existsSync(credsFile)) {
     let rawJson = fs.readFileSync(credsFile)
     app.auth.creds = _.merge(app.auth.creds, JSON.parse(rawJson))
-    // app.login()
+    app.login(true)
   }
 }
 
