@@ -1,14 +1,6 @@
-/* globals app */
+/* globals app, _ */
 function computeInsights () { // eslint-disable-line no-unused-vars
   let insights = []
-
-  Array.prototype.min = function () {
-    return Math.min.apply(null, this)
-  }
-
-  Array.prototype.max = function () {
-    return Math.max.apply(null, this)
-  }
 
   let failedGrades = []
   let allGrades = app.magister.grades.slice(0)
@@ -32,7 +24,7 @@ function computeInsights () { // eslint-disable-line no-unused-vars
 
   insights.push({
     name: 'Je hoogste cijfer was een ' +
-        app.magister.gradeToString(validGrades.max()) + '.',
+        app.magister.gradeToString(_.max(validGrades)) + '.',
 
     icon: 'fas fa-star',
     colors: {
@@ -43,7 +35,7 @@ function computeInsights () { // eslint-disable-line no-unused-vars
 
   insights.push({
     name: 'Je laagste cijfer was een ' +
-        app.magister.gradeToString(validGrades.min()) + '.',
+        app.magister.gradeToString(_.min(validGrades)) + '.',
 
     icon: 'fas fa-angle-double-down',
     colors: {
