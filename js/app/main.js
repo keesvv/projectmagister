@@ -20,7 +20,8 @@ var app = new Vue({
       creds: {
         school: '',
         username: '',
-        password: ''
+        password: '',
+        token: ''
       }
     },
     isLoaded: {
@@ -204,8 +205,8 @@ var app = new Vue({
             app.auth.loginSuccess = true
             app.auth.isBusy = false
 
-            let rawJson = JSON.stringify(app.auth.creds)
             if (app.auth.saveCreds) {
+              let rawJson = `{"school": "${app.auth.creds.school}", "username": "${app.auth.creds.username}", "token": "${app.auth.creds.token}"}`
               fs.writeFile(credsFile, rawJson, 'utf8', (err) => {
                 if (err) {
                   console.log('Unable to save credentials to file: ' + err)
@@ -223,23 +224,22 @@ var app = new Vue({
       })
     },
     signOff () {
-      var credsFile = path.join(electron.getPath('userData'), 'delta.json')
-      try {
-        fs.unlinkSync(credsFile)
-      } catch (err) {
-        if (err.code !== 'ENOENT') {
-          dialogError(err.message)
-          electron.quit()
-        }
-      }
-
       if (!app.auth.saveCreds) {
+        try {
+          fs.unlinkSync(credsFile)
+        } catch (err) {
+          if (err.code !== 'ENOENT') {
+            dialogError(err.message)
+            electron.quit()
+          }
+        }
+
         app.auth.schoolQuery = []
         app.auth.creds = {
           school: '',
           username: '',
-          password: ''
-
+          password: '',
+          token: ''
         }
       }
 
