@@ -1,4 +1,4 @@
-/* globals Vue, electron, path, fs, moment, sendNotify, ipcRenderer, credsFile, initData, $, refreshHomework, showInfoDialog, dialogError, getSchools, dialogQuestion, os, download, shell, spawn */
+/* globals Vue, remote, electron, path, fs, moment, sendNotify, ipcRenderer, credsFile, initData, $, refreshHomework, showInfoDialog, dialogError, getSchools, dialogQuestion, os, download, shell, spawn */
 var app = new Vue({
   el: '#app',
   data: {
@@ -204,6 +204,9 @@ var app = new Vue({
           if (isSuccess) {
             app.auth.loginSuccess = true
             app.auth.isBusy = false
+
+            app.auth.creds.token = remote.getGlobal('m').token
+            app.auth.creds.password = '' // Assures it can't be read from console anymore
 
             if (app.auth.saveCreds) {
               let rawJson = `{"school": "${app.auth.creds.school}", "username": "${app.auth.creds.username}", "token": "${app.auth.creds.token}"}`
