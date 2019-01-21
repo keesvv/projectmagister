@@ -12,7 +12,7 @@ function computeInsights () { // eslint-disable-line no-unused-vars
   for (let i = 0; i < allGrades.length; i++) {
     const element = allGrades[i]
     var parsedGrade = app.magister.parseGrade(element)
-    if (parsedGrade !== undefined) {
+    if (parsedGrade !== undefined && parsedGrade > 0) {
       if (parsedGrade < 5.5) {
         failedGrades.push(parsedGrade)
       }
@@ -23,14 +23,19 @@ function computeInsights () { // eslint-disable-line no-unused-vars
   }
 
   insights.push({
-    name: 'Je hoogste cijfer was een ' +
-        app.magister.gradeToString(_.max(validGrades)) + '.',
+    name: `Je hoogste cijfer was een ${app.magister.gradeToString(_.max(validGrades))}.`,
 
     icon: 'fas fa-star',
     colors: {
       bg: 'rgb(65, 244, 223)',
       fg: 'rgb(65, 133, 244)'
     }
+  })
+
+  insights.push({
+    name: `Je gemiddelde cijfer was een ${app.magister.gradeToString(_.round(_.mean(validGrades), 1))}.`,
+    icon: null,
+    colors: {}
   })
 
   insights.push({
@@ -45,8 +50,7 @@ function computeInsights () { // eslint-disable-line no-unused-vars
   })
 
   insights.push({
-    name: 'Je hebt dit jaar ' +
-        failedGrades.length + ` onvoldoende${failedGrades.length > 1 ? 's' : ''} gehaald.`,
+    name: `Je hebt dit jaar ${failedGrades.length} onvoldoende${failedGrades.length > 1 ? 's' : ''} gehaald.`,
 
     icon: null,
     colors: {}
