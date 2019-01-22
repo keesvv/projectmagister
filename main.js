@@ -45,24 +45,16 @@ function createWindow () {
 ipcMain.on('validate-creds', (event, creds) => {
   // Retrieve authentication code
   request('https://raw.githubusercontent.com/simplyGits/magisterjs-authcode/master/code.json', { json: true }, (err, res, code) => {
-    var authOptions
+    var authOptions = {
+      username: creds.username,
+      password: creds.password
+    }
 
     // Validate the response
-    if (err || res.statusCode !== 200) {
-      // If unsuccessful let magister.js use its
-      // default authenticationcode.
-      authOptions = {
-        username: creds.username,
-        password: creds.password
-      }
-    } else {
+    if (!err && res.statusCode === 200) {
       // If successful use the authenticationcode we
       // just retrieved.
-      authOptions = {
-        username: creds.username,
-        password: creds.password,
-        authCode: code
-      }
+      authOptions.authCode = code
     }
 
     // Retrieve schools
@@ -95,22 +87,15 @@ ipcMain.on('validate-creds', (event, creds) => {
 ipcMain.on('validate-token', (event, creds) => {
   // Retrieve authentication code
   request('https://raw.githubusercontent.com/simplyGits/magisterjs-authcode/master/code.json', { json: true }, (err, res, code) => {
-    var authOptions
+    var authOptions = {
+      token: creds.token
+    }
 
     // Validate the response
-    if (err || res.statusCode !== 200) {
-      // If unsuccessful let magister.js use its
-      // default authenticationcode.
-      authOptions = {
-        token: creds.token
-      }
-    } else {
+    if (!err && res.statusCode === 200) {
       // If successful use the authenticationcode we
       // just retrieved.
-      authOptions = {
-        token: creds.token,
-        authCode: code
-      }
+      authOptions.authcode = code
     }
 
     // Retrieve schools
