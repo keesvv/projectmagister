@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.6.3",
+    "@magisterjs/dynamic-authcode": "^1.0.0",
     "animate.css": "^3.7.0",
     "chart.js": "^2.7.3",
     "download": "^7.1.0",
