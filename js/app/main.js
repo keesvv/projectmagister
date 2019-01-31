@@ -85,8 +85,7 @@ var app = new Vue({
           if (lastGrades.length === maxItems) { break }
 
           const element = this.grades[i]
-          if (element.type.header == null &&
-                    element.weight > 0) {
+          if (element.weight > 0) {
             lastGrades.push(element)
           }
         }
