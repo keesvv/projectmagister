@@ -269,20 +269,12 @@
                     </div>
                 </div>
 
-                <div v-for="i in magister.getLastGrades()" class="smallCard">
-                    <div>
-                        <div :class="{ failed: magister.isFailed(i.grade), wellDone: magister.isWellDone(i.grade) }" class="itemContainer gradeItem">
-                            <p>{{ i.grade }}</p>
-                        </div>
+                <div v-for="i in magister.getLastGrades()" class="smallCard" @click="showGradeInfo(i)">
+                    <div :class="{ failed: magister.isFailed(i.grade), wellDone: magister.isWellDone(i.grade) }" class="itemContainer gradeItem">
+                        <p>{{ i.grade }}</p>
                     </div>
 
                     <p>{{ i.class.description }} <p class="detail">{{ i.description }}</p></p>
-
-                    <div class="btnPanel">
-                        <div class="cardButton infoDetails" @click="showGradeInfo(i)" title="Meer informatie">
-                            <i class="fas fa-info"></i>
-                        </div>
-                    </div>
                 </div>
             </div>
 
