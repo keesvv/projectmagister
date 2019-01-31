@@ -90,8 +90,4 @@ input[name="saveCreds"] {
     .authContent {
         padding-top: 20vh;
     }
-
-    &.loggedIn {
-        animation: slideOutLeft 0.4s forwards;
-    }
 }
