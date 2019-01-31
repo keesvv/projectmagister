@@ -94,7 +94,9 @@ function refreshData () {
 
         var validGrades = []
         grades.forEach(i => {
-          if (i.counts && i.weight > 0) { validGrades.push(i) }
+          if (i.counts && i.weight > 0 && i.type._type === 1) {
+            validGrades.push(i)
+          }
         })
 
         app.magister.grades = grades
