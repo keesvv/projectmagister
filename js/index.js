@@ -86,10 +86,11 @@ function refreshData () {
   m.courses().then((courses) => {
     _.last(courses).grades()
       .then((grades) => {
+        // Sort by newest grades first
         grades.sort(function (a, b) {
           var dateA = new Date(a.dateFilledIn)
           var dateB = new Date(b.dateFilledIn)
-          return dateB - dateA
+          return ((dateA > dateB) ? -1 : ((dateA < dateB) ? 1 : 0))
         })
 
         var validGrades = []
