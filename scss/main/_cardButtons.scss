@@ -1,0 +1,61 @@
+@mixin buttonColor($bg) {
+    i {
+        color: $bg;
+    }
+
+    &:hover {
+        background: $bg;
+
+        i {
+            color: white;
+        }
+    }
+
+    &:active {
+        background: lighten($color: $bg, $amount: 10);
+
+        i {
+            color: lighten($color: white, $amount: 10);
+        }
+    }
+}
+
+.btnPanel {
+    margin-bottom: 10px;
+}
+
+.cardButton {
+    @include buttonColor(rgb(30, 144, 255));
+
+    display: inline-block;
+    border-radius: 50%;
+    background: white;
+    border: 2px solid rgb(214, 214, 214);
+    margin: 0 10px 0 0;
+    width: 45px;
+    height: 45px;
+    transition: background-color 0.5s;
+    text-align: center;
+
+    i {
+        transition: color 0.2s;
+        font-size: 22px;
+        vertical-align: middle;
+        margin: auto;
+        width: auto;
+        height: 4px;
+    }
+
+    &:last-of-type {
+        margin-right: 0;
+    }
+
+    // Individual styles
+    &.finishHomework {
+        @include buttonColor(rgb(6, 189, 61));
+    }
+
+    &.infoDetails i {
+        font-size: 20px;
+    }
+}

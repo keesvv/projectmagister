@@ -1,0 +1,23 @@
+@keyframes glow {
+    from {
+        background: rgb(0, 110, 255);
+    }
+
+    to {
+        background: rgb(77, 154, 255);
+    }
+}
+
+@keyframes dots {
+    0% {
+      opacity: .2;
+    }
+
+    20% {
+      opacity: 1;
+    }
+
+    100% {
+      opacity: .2;
+    }
+}

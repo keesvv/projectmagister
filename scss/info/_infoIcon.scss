@@ -1,0 +1,38 @@
+.infoIcon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+
+    i {
+        color: white;
+        vertical-align: middle;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 40px;
+    }
+
+    &.appointmentInfo {
+        background: linear-gradient(to right bottom, rgb(49, 84, 241), rgb(0, 255, 255));
+    }
+
+    &.assignmentInfo {
+        background: linear-gradient(to right bottom, rgb(9, 199, 9), rgb(49, 241, 145));
+    }
+
+    &.testInfo {
+        background: linear-gradient(to right bottom, rgb(252, 100, 90), rgb(177, 16, 4));
+    }
+
+    &.gradeInfo {
+        background: linear-gradient(to right bottom, rgb(139, 49, 241), rgb(204, 0, 255));
+
+        i {
+            font-size: 38px;
+        }
+    }
+}

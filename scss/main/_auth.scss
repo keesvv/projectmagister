@@ -1,0 +1,113 @@
+@import 'spinner';
+
+.loginContainer input {
+    font-family: Poppins;
+    outline: none;
+
+    &[type="text"],
+    &[type="password"] {
+        display: block;
+        padding: 8px;
+        margin: 10px auto;
+        font-size: 16px;
+        border: 2px solid transparent;
+        border-radius: 8px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.18);
+        transition: border-color 0.4s, background-color 0.3s;
+        width: 35%;
+
+        &.error {
+            border: 2px solid red;
+            animation: shake 0.8s;
+        }
+
+        &:focus {
+            border: 2px solid rgb(41, 141, 255);
+        }
+    }
+}
+
+input[name="saveCreds"] {
+    &::after {
+        vertical-align: -10% !important;
+    }    
+}
+
+.logo {
+    width: 140px;
+    height: 140px;
+    -webkit-user-drag: none;
+}
+
+.guestContainer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin: 20px auto;
+    width: 100%;
+}
+
+.guestLabel {
+    width: 80%;
+    margin: 0 auto;
+}
+
+#authContainer {
+    z-index: 100;
+    background: white;
+    box-shadow: $defaultShadow;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+
+    #btnSubmit {
+        padding: 8px 38px;
+        border: 2px solid transparent;
+        border-radius: 9px;
+        background: rgb(41, 141, 255);
+        color: white;
+        font-size: 16px;
+        font-weight: bolder;
+        font-family: Poppins;
+        transition: background-color 0.5s, border-color 0.5s ;
+        margin-top: 10px;
+
+        i {
+            margin-left: 6px;
+            font-size: 15px;
+            transition: transform 0.5s;
+        }
+
+        &:focus {
+            outline: none;
+        }
+
+        &:disabled {
+            background: #c2c2c2;
+        }
+
+        &:enabled {
+            cursor: pointer;
+
+            &:hover {
+                background: rgb(83, 163, 255);
+
+                i {
+                    opacity: 1;
+                    transform: translateX(5px);
+                }
+            }
+        }
+    }
+
+    .authContent {
+        padding-top: 20vh;
+
+        .loginHeader {
+            font-size: 32px;
+        }
+    }
+}

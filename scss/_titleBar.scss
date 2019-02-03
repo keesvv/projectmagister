@@ -1,0 +1,43 @@
+.no-resize {
+    #maximizeBtn {
+        display: none;
+    }
+}
+
+.titleBar {
+    -webkit-app-region: drag;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgb(242, 242, 242);
+    width: 100%;
+    z-index: 300;
+
+    div {
+        display: inline-block;
+        vertical-align: middle;
+
+        &.titleContainer {
+            padding-left: 10px;
+        }
+
+        &.btnContainer {
+            position: absolute;
+            right: 0;
+            top: 30%;
+            padding-right: 10px;
+            font-size: 14px;
+            display: inline-block;
+
+            div {
+                margin: 0 5px;
+                -webkit-app-region: no-drag;
+                cursor: pointer;
+                
+                &#minimizeBtn i {
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+}

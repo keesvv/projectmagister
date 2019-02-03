@@ -1,0 +1,104 @@
+// Item container
+.itemContainer {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+
+    &:last-of-type {
+        margin-right: 8px;
+    }
+}
+
+// Grade container
+.gradeItem {
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+    border-radius: 50%;
+    border: 2px solid white;
+    color: white;
+    background: rgb(92, 114, 241);
+    
+    p {
+        vertical-align: middle;
+        margin: auto;
+        font-weight: lighter;
+        font-size: 16px;
+    }
+
+    &.failed {
+        background: rgb(245, 109, 109);
+    }
+
+    &.wellDone {
+        background: rgb(83, 255, 212);
+        color: black;
+        border: 2px dotted rgb(83, 109, 255);
+    }
+}
+
+// Calendar item container
+.calendarItem {
+    float: left;
+    background: rgb(61, 61, 61);
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 5px;
+    margin-right: 5px;
+}
+
+// Homework item container
+.homeworkItem {
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+    background: rgb(233, 233, 233);
+    color: black;
+    border-radius: 50%;
+}
+
+// Test item container
+.testItem {
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+    background: rgb(59, 126, 250);
+    color: white;
+    border-radius: 50%;
+
+    p {
+        vertical-align: middle;
+        margin: auto;
+        font-weight: bolder;
+        font-size: 16px;
+    }
+}
+
+// Insight item container
+.insightItem {
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+    color: black;
+    background: rgb(233, 233, 233);
+    border-radius: 50%;
+    font-size: 22px;
+}
+
+// Message item container
+.messageItem {
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+    border-radius: 50%;
+    margin-bottom: -10px;
+    font-size: 22px;
+    color: black;
+    background: rgb(226, 226, 226);
+
+    &.unread {
+        color: white;
+        background: rgb(65, 65, 65);
+    }
+}

@@ -28,8 +28,11 @@ Voor een overzicht van alle (bèta)versies/releases van Delta kun je terecht op 
 # Voor ontwikkelaars
 1. Clone deze repository naar je lokale schijf met `git clone https://github.com/deltaproject/Delta`
 2. Open je Terminal-emulator en navigeer naar de locatie waar je de repository hebt gecloned
-3. Typ `yarn install` om alle dependencies te installeren (of `npm i`).
-4. Start Delta met `yarn run dev` (of `npm run dev`).
+3. Typ `npm install` om alle dependencies te installeren
+4. Start Delta met `npm start -- --debug` of `electron . --debug`
+5. Als je de stylesheets wilt aanpassen in `sass/*.scss`, typ `npm run watch` om deze te compilen naar `dist/css/styles.css`.
+> **Let op:** het is niet de bedoeling om handmatig de stylesheet aan te passen in `dist/css/styles.css`, dit is namelijk een automatisch gegenereerd bestand.
+Zie stap 5 voor informatie over het aanpassen van stylesheets.
 
 # Voor scholen en docenten
 Er is een Enterprise-versie gepland voor Delta die geschikt is voor docenten op het voortgezet onderwijs. Deze zal voorlopig nog niet tot ontwikkeling worden gebracht. Scholen kunnen overigens wel nu al gebruik maken van de **Gastmodus voor scholen**, dit is een speciale modus voor Delta die geschikt is voor schoolcomputers/openbare computers voor leerlingen om in een veilige omgeving in te kunnen loggen bij Delta zonder dat hun inloggegevens worden opgeslagen.

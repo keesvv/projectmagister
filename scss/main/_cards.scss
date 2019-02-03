@@ -1,0 +1,210 @@
+// Container for all cards
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    -webkit-app-region: no-drag;
+    animation: fadeIn 0.8s;
+}
+
+// Main card
+.card {
+    @extend .no-select;
+
+    width: 30%;
+    min-width: 300px;
+    max-width: 500px;
+    height: 400px;
+    padding: 1px 10px 10px;
+    border-radius: 8px;
+    margin: 10px 5px;
+    box-shadow: 2px 2px 20px $shadowColor;
+    display: inline-block;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-app-region: no-drag;
+
+    h1:first-of-type {
+        text-align: left;
+        font-size: 24px;
+
+        > span {
+            font-size: 60%;
+            font-weight: lighter;
+        }
+    }
+
+    // Individual cards
+    &#agenda {
+        color: white;
+        background: rgb(35, 117, 224);
+    }
+    
+    &#huiswerk {
+        color: black;
+        background: rgb(98, 233, 170);
+    }
+    
+    &#cijfers {
+        color: white;
+        background: rgb(152, 55, 209);
+    }
+
+    &#berichten {
+        color: black;
+        background: rgb(241, 98, 98);
+    }
+
+    &#toetsen {
+        color: black;
+        background: rgb(249, 184, 127);
+    }
+}
+
+// Small card
+.smallCard {
+    background: white;
+    color: black;
+    padding: 3px 10px;
+    border-radius: 8px;
+    margin: 10px 5px;
+    box-shadow: $defaultShadow;
+    transition: transform 0.2s;
+    animation: fadeInLeft 0.4s;
+    cursor: pointer;
+
+    &:hover {
+        transform: scale(1.03);
+    }
+
+    .todo .homeworkItem {
+        font-size: 22px;
+        font-weight: bolder;
+    }
+
+    .done .homeworkItem {
+        background: rgb(67, 207, 137);
+        color: white;
+        font-size: 22px;
+        font-weight: bolder;
+    }
+
+    .done {
+        p:first-of-type {
+            color: rgb(112, 112, 112);
+        }
+
+        p:nth-of-type(2) {
+            color: rgb(202, 202, 202);
+            text-decoration: line-through;
+        }
+    }
+
+    p:first-of-type {
+        display: inline-block;
+        font-weight: bold;
+    }
+}
+
+// Big list
+.bigList {
+    background: white;
+    border-radius: 8px;
+    height: auto;
+    box-shadow: $defaultShadow;
+    padding: 10px 0;
+    margin: 10px 5px;
+
+    .bigListItem {
+        cursor: pointer;
+        background: none;
+        padding: 3px 10px;
+        margin: 0 5px;
+        box-shadow: none;
+        height: auto;
+        color: black;
+        transition: opacity 1s, background-color 0.3s;
+
+        p {
+            display: inline-block;
+            margin-top: -6px;
+        }
+
+        p:first-of-type,
+        span.bold,
+        .location {
+            font-weight: bold !important;
+        }
+
+        .location::before {
+            content: "(";
+        }
+
+        .location::after {
+            content: ")";
+        }
+
+        &.scrapped {
+            p {
+                color: rgb(175, 175, 175);
+                text-decoration: line-through;
+            }
+            
+            .calendarItem {
+                background: rgb(175, 175, 175);
+            }
+        }
+
+        &:hover {
+            background: rgb(228, 228, 228);
+            border-radius: 5px;
+        }
+    }
+}
+
+// Attachment styling
+.attachContainer {
+    margin-bottom: 10px;
+
+    .attachment {
+        display: inline-block;
+        box-shadow: 0 0 8px $shadowColor;
+        border-radius: 15px;
+        width: auto;
+        height: 30px;
+        margin: 4px;
+        padding: 0 10px;
+        transition: color 0.5s, background-color 0.8s;
+
+        &:hover {
+            color: white;
+            background: rgb(0, 102, 255);
+        }
+    
+        .attachIcon {
+            vertical-align: middle;
+            width: 16px;
+            height: 16px;
+            margin: auto;
+        }
+    
+        p {
+            text-align: right;
+            font-size: 14px;
+            font-weight: normal;
+            margin: auto;
+        }
+    }
+}
+
+// Item descriptors
+.itemDesc {
+    overflow: hidden;
+
+    p:nth-of-type(2) {
+        margin-top: -12px;
+    }
+
+    span {
+        font-weight: lighter;
+    }
+}

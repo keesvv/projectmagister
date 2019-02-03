@@ -1,0 +1,102 @@
+$shadowColor: rgba(0, 0, 0, 0.315);
+$defaultShadow: 0 0 15px $shadowColor;
+
+html {
+    padding: 0;
+    margin: 0;
+
+    body {
+        font-family: Poppins;
+        overflow-x: hidden;
+    }
+}
+
+.center {
+    text-align: center;
+}
+
+.no-select {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: default;
+}
+
+::-webkit-scrollbar {
+    background-color: rgb(209, 209, 209);
+    width: 14px;
+}
+
+::-webkit-scrollbar-thumb:window-inactive,
+::-webkit-scrollbar-thumb {
+    background: rgb(160, 160, 160);
+
+    &:hover {
+        background: rgb(146, 146, 146);
+    }
+}
+
+input[type="checkbox"] {
+    $defaultBackground: rgba(211, 211, 211, 0.555);
+    $checkedBackground: rgb(52, 133, 255);
+
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    vertical-align: middle;
+    outline: none;
+    border-radius: 4px;
+    text-align: center;
+    transition: background-color 0.3s, color 0.3s;
+    
+    background: $defaultBackground;
+    color: rgba(0, 0, 0, 0.322);
+
+    &::after {
+        font-family: "Font Awesome 5 Free";
+        font-style: normal;
+        font-weight: 900;
+        font-size: 13px;
+        vertical-align: -20%;
+        content: "\f00d";
+    }
+
+    &:checked {
+        color: white;
+        background: $checkedBackground;
+
+        &::after {
+            content: "\f00c";
+        }
+
+        &:disabled {
+            color: rgb(92, 92, 92);
+        }
+    }
+
+    &:disabled {
+        background: rgb(175, 175, 175);
+    }
+}
+
+.right {
+    float: right;
+}
+
+.hidden {
+    display: none;
+}
+
+.detail {
+    color: gray;
+    font-size: 0.85em;
+    vertical-align: middle;
+}
+
+.spin {
+    animation: fa-spin 3s infinite linear;
+}

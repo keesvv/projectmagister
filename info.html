@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./node_modules/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="./node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="./node_modules/animate.css/animate.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500" rel="stylesheet">
+    <link rel="stylesheet" href="./dist/css/info/master.css">
+    <title>Informatie</title>
+</head>
+<body>
+    <div id="app">
+
+        <div class="container no-select">
+            <div class="infoIcon" :class="type">
+                <i v-if="type != 'gradeInfo'" :class="icon"></i>
+                <i v-if="type == 'gradeInfo'">{{ icon }}</i>
+            </div>
+
+            <h1>{{ header }}</h1>
+            <table>
+                <tr v-for="i in tableData">
+                    <td>{{ i.name }}</td>
+                    <td>{{ i.value }}</td>
+                </tr>
+            </table>
+
+            <div class="contentContainer" v-if="content">
+                <h1>Inhoud</h1>
+                <div class="infoContent" v-html="content"></div>
+            </div>
+
+            <div class="closeContainer">
+                <div class="infoClose" @click="closeInfo()">
+                    <i class="fas fa-times"></i>
+                    <span>Sluiten</span>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <script src="./js/app/info.js"></script>
+</body>
+</html>

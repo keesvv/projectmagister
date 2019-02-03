@@ -1,0 +1,18 @@
+.spinner {
+    margin: auto;
+    margin-top: 20px;
+    animation: fadeIn 1s;
+
+    i {
+        font-size: 30px;
+        color: grey;
+
+        &.spin {
+            animation: fa-spin 1s infinite linear;
+        }
+    }
+
+    p.detail {
+        animation: fadeInUp 1s;
+    }
+}
