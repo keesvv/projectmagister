@@ -1,0 +1,65 @@
+@import '../global';
+@import '../notify';
+@import 'keyframes';
+@import 'cards';
+@import 'cardContainers';
+@import 'cardButtons';
+@import 'files';
+@import 'auth';
+
+body {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.username-big {
+    font-weight: bolder;
+}
+
+.no-info {
+    margin: auto;
+    margin-top: 50px;
+    vertical-align: middle;
+    text-align: center;
+    animation: fadeInDown 0.5s;
+
+    i {
+        font-size: 48px;
+    }
+
+    p {
+        font-size: 24px;
+        font-weight: 500;
+    }
+}
+
+.checkContainer input {
+    vertical-align: middle;
+}
+
+.warn {
+    color: red;
+    font-weight: bold;
+}
+
+.contextMenu {
+    display: none;
+    position: absolute;
+    min-width: 200px;
+    font-size: 16px;
+    padding: 0 15px;
+    border-radius: 8px;
+}
+
+.cardLoading {
+    margin: auto;
+    margin-top: 140px;
+    vertical-align: middle;
+    text-align: center;
+
+    i {
+        color: black;
+        font-size: 35px;
+        animation: fa-spin 1.2s infinite linear;
+    }
+}

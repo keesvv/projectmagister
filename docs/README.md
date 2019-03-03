@@ -28,20 +28,27 @@ Voor een overzicht van alle (bèta)versies/releases van Delta kun je terecht op 
 # Voor ontwikkelaars
 1. Clone deze repository naar je lokale schijf met `git clone https://github.com/deltaproject/Delta`
 2. Open je Terminal-emulator en navigeer naar de locatie waar je de repository hebt gecloned
-3. Typ `npm install` om alle dependencies te installeren
-4. Start Delta met `npm start -- --debug` of `electron . --debug`
-5. Als je de stylesheets wilt aanpassen in `sass/*.scss`, typ `npm run watch` om deze te compilen naar `dist/css/styles.css`.
-> **Let op:** het is niet de bedoeling om handmatig de stylesheet aan te passen in `dist/css/styles.css`, dit is namelijk een automatisch gegenereerd bestand.
-Zie stap 5 voor informatie over het aanpassen van stylesheets.
+3. Typ `yarn install` om alle dependencies te installeren (of `npm i`).
+4. Start Delta met `yarn run dev` (of `npm run dev`).
 
 # Voor scholen en docenten
-Er is een Enterprise-versie gepland voor Delta die geschikt is voor docenten op het voortgezet onderwijs. Deze zal voorlopig nog niet tot ontwikkeling worden gebracht. Scholen kunnen overigens wel nu al gebruik maken van de **Gastmodus voor scholen**, dit is een speciale modus voor Delta die geschikt is voor schoolcomputers/openbare computers voor leerlingen om in een veilige omgeving in te kunnen loggen bij Delta zonder dat hun inloggegevens worden opgeslagen.
+Er is een Enterprise-versie gepland voor Delta die geschikt is voor docenten op het voortgezet onderwijs. Deze zal voorlopig nog niet tot ontwikkeling worden gebracht. Scholen kunnen overigens wel nu al gebruik maken van de **gastmodus voor scholen**, dit is een speciale modus voor Delta die geschikt is voor schoolcomputers/openbare computers voor leerlingen om in een veilige omgeving in te kunnen loggen bij Delta zonder dat hun inloggegevens worden opgeslagen.
+
+De gastmodus kan worden aangezet door een bestand `school.json` aan te maken in de app data folder van Delta (`%APPDATA%\Delta\` op Windows en `~/Library/Application Support/Delta/` op OS X). Het bestand dient de volgende inhoud te hebben:
+```json
+{ "schoolname": "Naam van de school" }
+```
+
+U kunt dit bestand beveiligen door de schrijftoegang in te nemen. Delta heeft alleen leestoegang nodig om de gastmodus te activeren. U kunt bevestigen dat de gastmodus is geactiveerd als er bij het inlogscherm een melding verschijnt dat de gastmodus is ingeschakeld.
 
 # Een bijdrage leveren
 Zie [Een bijdrage leveren](https://github.com/deltaproject/Delta/blob/master/docs/CONTRIBUTING.md) voor details over het maken voor Pull Requests enzovoorts.
 
 # Roadmap
 Je kunt [hier de Roadmap bekijken](https://github.com/deltaproject/Delta/projects/1) van Delta. Hierin staan de mogelijk verwachte functies die je binnenkort zult tegenkomen in Delta. Wil jij bijdragen aan een van deze nieuwe functies? Zie **Een bijdrage leveren** voor details.
+
+# Bijdragers
+Met dank aan [Julian van Doorn (@Argetan)](https://github.com/Argetan) voor het verder uitbreiden en steunen van Delta.
 
 # Credits
 Met speciale dank aan [Lieuwe Rooijakkers (@lieuwex)](https://github.com/lieuwex) voor het maken van [MagisterJS](https://github.com/simplyGits/MagisterJS), die Delta mogelijk maakte.
