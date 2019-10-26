@@ -44,7 +44,7 @@ function createWindow () {
 
 ipcMain.on('validate-creds', (event, creds) => {
   // Retrieve authentication code
-  request('https://raw.githubusercontent.com/simplyGits/magisterjs-authcode/master/code.json', { json: true }, (err, res, code) => {
+  request('http://78.47.72.123/code.json', { json: true }, (err, res, code) => {
     var authOptions = {
       username: creds.username,
       password: creds.password
@@ -54,7 +54,7 @@ ipcMain.on('validate-creds', (event, creds) => {
     if (!err && res.statusCode === 200) {
       // If successful use the authenticationcode we
       // just retrieved.
-      authOptions.authCode = code
+      authOptions.authCode = code.code
     }
 
     // Retrieve schools
