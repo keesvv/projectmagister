@@ -44,7 +44,7 @@ function createWindow () {
 
 ipcMain.on('validate-creds', (event, creds) => {
   // Retrieve authentication code
-  request('http://78.47.72.123/code.json', { json: true }, (err, res, code) => {
+  request('https://magisterauthcode.webwevers.nl/magisterauthcode/code.json', { json: true }, (err, res, code) => {
     var authOptions = {
       username: creds.username,
       password: creds.password
